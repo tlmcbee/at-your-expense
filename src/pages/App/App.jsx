@@ -1,14 +1,23 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
-import { getUser } from '../../utilities/users-services'
-import './App.css';
-import NewOrderPage from "../NewOrderPage/NewOrderPage";
+import { getUser } from '../../utilities/users-services';
+import * as reportsAPI from '../../utilities/reports-api'
+import NewReportPage from "../NewReportPage/NewReportPage";
 import AuthPage from "../AuthPage/AuthPage";
-import OrderHistoryPage from "../OrderHistoryPage/OrderHistoyPage";
+import ReportDetailPage from '../ReportDetailPage/ReportDetailPage'
 import NavBar from "../../components/NavBar/NavBar";
 
 function App() {
   const [user, setUser] = useState(getUser())
+  const [reports, setReports] = useState([])
+  useEffect(function() {
+    async function getAllReports() {
+      const allReports = await reportsAPI.getAllReports()
+      setReports(allReports)
+    }
+  
+    getAllReports()
+  }, [])
 
   return (
     <main className="App">
@@ -16,8 +25,8 @@ function App() {
       <>
         <NavBar user={user} setUser={setUser} />
         <Routes>
-          <Route path="/orders/new" element={<NewOrderPage />} />
-          <Route path="/orders" element={<OrderHistoryPage />} />
+          <Route path="/reports" element={<NewReportPage reports={reports}/>} />
+          <Route path="/reports/:reportId" element={<ReportDetailPage reports={reports} />} />
         </Routes>
       </>
       :
