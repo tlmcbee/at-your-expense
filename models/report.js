@@ -6,19 +6,21 @@ const expenseSchema = new Schema({
     type: String,
     required: true
   },
+   date: {
+    type: Date, 
+    required: true
+  },
   expenseType: {
     type: String,
     required: true
   },
-  date: {
-    type: Date, 
-    required: true
-  },
+ description: {
+  type: String
+ },
   amount: {
     type: Number, 
     required: true
   },
-  refFile: {type: String}
 })
 
 const reportSchema = new Schema({
@@ -27,7 +29,20 @@ const reportSchema = new Schema({
   isPending: {type: Boolean, default: false},
   isComplete: {type: Boolean, default: false},
 },{
-  timestamps: true
+  timestamps: true,
+  toJSON: {virtuals: true}
 })
+
+reportSchema.virtual('expenseTotal').get(function() {
+  return this.expenses.reduce((total, expense) => total + expense.amount, 0)
+})
+
+reportSchema.statics.getReport = function(userId) {
+  return this.findOneAndUpdate(
+    {user: userId, isPending: false, isComplete: false},
+    {user: userId},
+    {upsert: true, new: true}
+  )
+}
 
 module.exports = mongoose.model('Report', reportSchema)

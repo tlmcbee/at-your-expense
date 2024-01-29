@@ -19,6 +19,8 @@ function App() {
     getAllReports()
   }, [])
 
+  
+
   return (
     <main className="App">
       {user ? 
