@@ -1,9 +1,9 @@
 import { Link } from 'react-router-dom'
 
-export default function ExpenseLineItem({ expense, handleSwitchComponent }) {
+export default function ExpenseLineItem({ report, expense }) {
   return (
-    <Link>
-      <li onClick={handleSwitchComponent}>
+    <Link to={`/expenses/${expense._id}`}>
+      <li>
         {expense.title}
         {expense.date}
         {expense.amount}

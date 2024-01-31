@@ -9,11 +9,9 @@ export default function NavBar({ user, setUser }) {
 
   return (
     <nav>
-      <Link to="/orders">Order History</Link>
+      Welcome {user.name.toUpperCase()}!
       &nbsp; | &nbsp;
       <Link to="/reports">My Reports</Link>
-      &nbsp; | &nbsp;
-      Welcome {user.name.toUpperCase()}!
       &nbsp; | &nbsp;
       <Link to="#" onClick={handleLogOut}>Log Out</Link>
 

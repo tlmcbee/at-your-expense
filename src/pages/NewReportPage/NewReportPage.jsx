@@ -11,9 +11,6 @@ export default function NewReportPage({ reports }) {
 
   return (
     <main>
-      <aside>
-        <ReportList reports={reports} />
-      </aside>
       <h1>New Report Page</h1>
       <form>
       <button type="button" onClick={handleClick}>Create new Report</button>
