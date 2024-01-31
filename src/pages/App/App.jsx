@@ -29,6 +29,22 @@ function App() {
     return reports.find(report => report._id === reportId)
   }
 
+  function addReport(report) {
+    setReports([...reports, report])
+  }
+
+  function deleteReport(reportId) {
+    setReports(reports.filter(report => report._id !== reportId))
+  }
+
+  function addExpense() {
+
+  }
+  
+  function deleteExpense(expenseId){  
+    setReports(reports.filter(report => report.expenses._id !== expenseId))
+  }
+
   return (
     <main className="App">
       {user ? 
@@ -38,9 +54,9 @@ function App() {
           <ReportList reports={reports} />
         </aside>
         <Routes>
-          <Route path="/reports" element={<NewReportPage />} />
-          <Route path="/reports/:reportId" element={<ReportDetailPage getReport={getReport} />} />
-          <Route path="/expenses/:expenseId" element={<ExpenseDetailPage  getReportFromExpense={getReportFromExpense} />} />
+          <Route path="/reports" element={<NewReportPage addReport={addReport} />} />
+          <Route path="/reports/:reportId" element={<ReportDetailPage getReport={getReport} deleteReport={deleteReport} addExpense={addExpense}/>} />
+          <Route path="/expenses/:expenseId" element={<ExpenseDetailPage  getReportFromExpense={getReportFromExpense} deleteExpense={deleteExpense} />} />
         </Routes>
       </>
       :

@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import * as reportsAPI from '../../utilities/reports-api'
 
-export default function NewExpenseForm({ report }){
+export default function NewExpenseForm({ report, addExpense }){
   const [formData, setFormData] = useState({
     title: '',
     date: new Date(),
@@ -29,6 +29,7 @@ export default function NewExpenseForm({ report }){
       description: '',
       amount: ''
     })
+    addExpense(reportId)
   }
 
   return(

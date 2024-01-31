@@ -6,5 +6,6 @@ router.get('/', reportsCtrl.index)
 router.get('/:id', reportsCtrl.getReport)
 router.post('/new', reportsCtrl.new)
 router.post('/:id/expenses', reportsCtrl.addToReport)
+router.delete('/:id', reportsCtrl.delete)
 
 module.exports = router

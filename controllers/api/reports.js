@@ -5,6 +5,7 @@ module.exports = {
   getReport,
   new: newReport,
   addToReport,
+  delete: deleteReport
 }
 
 async function index(req, res) {
@@ -37,5 +38,15 @@ async function addToReport(req, res) {
   } catch(err){
     console.log(err)
     res.status(400).json(err)
+ }
+}
+
+async function deleteReport(req, res) {
+  try{
+  const report = await Report.findOneAndDelete({ _id: req.params.id, user: req.user.id})
+  res.json(report)
+ } catch(err){
+  console.log(err)
+  res.status(400).json(err)
  }
 }

@@ -1,13 +1,15 @@
 import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import * as reportsAPI from '../../utilities/reports-api'
 
-export default function NewReportForm() {
+export default function NewReportForm({ addReport }) {
   const [formData, setFormData] = useState({
     title: '',
     expenses: [],
     isPending: false,
     isComplete: false,
   })
+  const navigate = useNavigate()
 
 
   function handleChange(evt) {
@@ -18,10 +20,11 @@ export default function NewReportForm() {
     setFormData(newFormData)
   }
 
-  function handleSubmit(evt) {
+  async function handleSubmit(evt) {
     evt.preventDefault()
-    const reportFormData = reportsAPI.createReport(formData)
-    setFormData(reportFormData)
+    const newReport = await reportsAPI.createReport(formData)
+    addReport(newReport)
+    navigate(`/reports/${newReport._id}`)
   }
 
   return (
