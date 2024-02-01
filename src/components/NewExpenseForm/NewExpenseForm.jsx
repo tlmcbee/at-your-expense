@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import * as reportsAPI from '../../utilities/reports-api'
 
-export default function NewExpenseForm({ report, addExpense }){
+export default function NewExpenseForm({ report, updateReport }){
   const [formData, setFormData] = useState({
     title: '',
     date: new Date(),
@@ -21,7 +21,7 @@ export default function NewExpenseForm({ report, addExpense }){
   async function handleSubmit(evt) {
     evt.preventDefault()
     const reportId = report._id
-    await reportsAPI.addToReport(reportId, formData)
+    const updatedReport = await reportsAPI.addToReport(reportId, formData)
     setFormData({
       title: '',
       date: new Date(),
@@ -29,7 +29,7 @@ export default function NewExpenseForm({ report, addExpense }){
       description: '',
       amount: ''
     })
-    addExpense(reportId)
+    updateReport(updatedReport)
   }
 
   return(

@@ -12,7 +12,6 @@ import ReportList from "../../components/ReportList/ReportList";
 function App() {
   const [user, setUser] = useState(getUser())
   const [reports, setReports] = useState([])
-  const reportsCopy = [...reports]
   useEffect(function() {
     async function getAllReports() {
       const allReports = await reportsAPI.getAllReports()
@@ -38,16 +37,13 @@ function App() {
     setReports(reports.filter(report => report._id !== reportId))
   }
 
-  function addExpense() {
-
-  }
-  
-  function deleteExpense(newReport){  
+  function updateReport(newReport) {
     const reportsCopy = [...reports]
     const repIdx = reportsCopy.findIndex(rep => rep._id === newReport._id)
     reportsCopy[repIdx] = newReport
     setReports(reportsCopy)
-}
+  }
+  
   return (
     <main className="App">
       {user ? 
@@ -58,8 +54,8 @@ function App() {
         </aside>
         <Routes>
           <Route path="/reports" element={<NewReportPage addReport={addReport} />} />
-          <Route path="/reports/:reportId" element={<ReportDetailPage getReport={getReport} deleteReport={deleteReport} addExpense={addExpense}/>} />
-          <Route path="/expenses/:expenseId" element={<ExpenseDetailPage  getReportFromExpense={getReportFromExpense} deleteExpense={deleteExpense} />} />
+          <Route path="/reports/:reportId" element={<ReportDetailPage getReport={getReport} deleteReport={deleteReport} updateReport={updateReport}/>} />
+          <Route path="/expenses/:expenseId" element={<ExpenseDetailPage  getReportFromExpense={getReportFromExpense} updateReport={updateReport} />} />
         </Routes>
       </>
       :

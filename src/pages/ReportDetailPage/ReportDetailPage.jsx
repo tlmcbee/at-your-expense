@@ -4,7 +4,7 @@ import NewExpenseForm from '../../components/NewExpenseForm/NewExpenseForm'
 import ExpensesList from '../../components/ExpensesList/ExpensesList'
 
 
-export default function ReportDetailPage({ getReport, deleteReport, addExpense }) {
+export default function ReportDetailPage({ getReport, deleteReport, updateReport }) {
   let { reportId } = useParams()
   let report = getReport(reportId)
   const navigate = useNavigate()
@@ -24,7 +24,7 @@ export default function ReportDetailPage({ getReport, deleteReport, addExpense }
       <h1>{report.title}</h1>
       <button onClick={removeReport}>Delete Report</button>
       <ExpensesList expenses={report.expenses} />
-      <NewExpenseForm report={report} addExpense={addExpense} /> 
+      <NewExpenseForm report={report} updateReport={updateReport} /> 
     </main>
     </>
   )
