@@ -12,6 +12,7 @@ import ReportList from "../../components/ReportList/ReportList";
 function App() {
   const [user, setUser] = useState(getUser())
   const [reports, setReports] = useState([])
+  const reportsCopy = [...reports]
   useEffect(function() {
     async function getAllReports() {
       const allReports = await reportsAPI.getAllReports()
@@ -41,10 +42,12 @@ function App() {
 
   }
   
-  function deleteExpense(expenseId){  
-    setReports(reports.filter(report => report.expenses._id !== expenseId))
-  }
-
+  function deleteExpense(newReport){  
+    const reportsCopy = [...reports]
+    const repIdx = reportsCopy.findIndex(rep => rep._id === newReport._id)
+    reportsCopy[repIdx] = newReport
+    setReports(reportsCopy)
+}
   return (
     <main className="App">
       {user ? 

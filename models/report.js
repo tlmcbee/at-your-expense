@@ -12,6 +12,7 @@ const expenseSchema = new Schema({
   },
   expenseType: {
     type: String,
+    default: 'transportation',
     required: true
   },
  description: {

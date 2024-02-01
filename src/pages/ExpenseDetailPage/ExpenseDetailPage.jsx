@@ -16,9 +16,9 @@ export default function ExpenseDetailPage({getReportFromExpense, deleteExpense})
   }
 
   async function removeExpense(){
-    await expensesAPI.removeExpense(expense._id)
-    deleteExpense(expense._id)
-    navigate(`/reports/${report._id}`)
+    const updatedReport = await expensesAPI.removeExpense(expense._id)
+    deleteExpense(updatedReport)
+    navigate(`/reports/${updatedReport._id}`)
   }
 
   return (
@@ -27,7 +27,7 @@ export default function ExpenseDetailPage({getReportFromExpense, deleteExpense})
       <h1>{report.title}</h1>
       <ExpensesList expenses={report.expenses}/>
       <button onClick={showExpenseForm}>Add Expense</button>
-      <ExpenseDetailView expense={expense} deleteExpense={deleteExpense}/>
+      <ExpenseDetailView expense={expense} />
       <button>Update Expense</button>
     <button onClick={removeExpense}>Delete Expense</button>
     </main>

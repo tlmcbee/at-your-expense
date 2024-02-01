@@ -13,10 +13,8 @@ async function getExpense(req, res) {
 }
 
 async function deleteExpense(req, res) {
-  console.log(req.params.expenseId)
   try {
   const report = await Report.findOne({'expenses._id': req.params.expenseId})
-  console.log(report)
   report.expenses.remove(req.params.expenseId)
   await report.save()
   res.json(report)
