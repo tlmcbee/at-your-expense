@@ -24,3 +24,11 @@ export function submitReport(reportId) {
 export function editReport(reportId) {
   return sendRequest(`${BASE_URL}/${reportId}/edit-report`, 'POST')
 }
+
+export function approveReport(reportId) {
+  return sendRequest(`${BASE_URL}/${reportId}/approve-report`, 'POST')
+}
+
+export function denyReport(reportId) {
+  return sendRequest(`${BASE_URL}/${reportId}/deny-report`, 'POST')
+}

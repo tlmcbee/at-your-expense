@@ -8,7 +8,9 @@ module.exports = {
   addToReport,
   delete: deleteReport,
   submitReport,
-  editReport
+  editReport,
+  approved,
+  denied
 }
 
 async function index(req, res) {
@@ -22,7 +24,9 @@ async function getReport(req, res) {
 }
 
 async function newReport(req, res) {
+  req.body.user = req.user._id
   try {
+    console.log(req.body)
     const report = await Report.create(req.body)
     res.json(report)
   } catch(err) {
@@ -65,7 +69,7 @@ async function deleteReport(req, res) {
 }
 
 async function submitReport(req, res) {
-  try{
+  try {
   const report = await Report.findById(req.params.id)
   report.isPending = true
   await report.save()
@@ -77,13 +81,35 @@ async function submitReport(req, res) {
 }
 
 async function editReport(req, res) {
-  try{
+  try {
   const report = await Report.findById(req.params.id)
   report.isPending = false
   await report.save()
   res.json(report)
   } catch(err) {
     console.log(err)
+    res.status(400).json(err)
+  }
+}
+
+async function approved(req, res) {
+  try {
+    const report = await Report.findById(req.params.id)
+    report.isApproved = true
+    await report.save()
+    res.json(report)
+  } catch(err) {
+    res.status(400).json(err)
+  }
+}
+
+async function denied(req, res) {
+  try {
+    const report = await Report.findById(req.params.id)
+    report.isPending = false
+    await report.save()
+    res.json(report)
+  } catch(err) {
     res.status(400).json(err)
   }
 }

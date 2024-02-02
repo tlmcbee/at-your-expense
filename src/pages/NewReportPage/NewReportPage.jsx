@@ -1,8 +1,7 @@
 import { useState } from 'react'
-import ReportList from '../../components/ReportList/ReportList';
 import NewReportForm from '../../components/NewReportForm/NewReportForm'
 
-export default function NewReportPage({ reports, addReport }) {
+export default function NewReportPage({ reports, addReport, user }) {
   const [showForm, setShowForm] = useState(false)
 
   function handleClick() {
@@ -15,7 +14,7 @@ export default function NewReportPage({ reports, addReport }) {
       <form>
       <button type="button" onClick={handleClick}>Create new Report</button>
       </form>
-       {showForm ? <NewReportForm addReport={addReport} /> : null }
+       {showForm ? <NewReportForm addReport={addReport} user={user} /> : null }
   </main>
   )
 }

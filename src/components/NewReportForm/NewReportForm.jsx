@@ -2,12 +2,13 @@ import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import * as reportsAPI from '../../utilities/reports-api'
 
-export default function NewReportForm({ addReport }) {
+export default function NewReportForm({ addReport, user }) {
   const [formData, setFormData] = useState({
     title: '',
     expenses: [],
     isPending: false,
     isComplete: false,
+    user: ''
   })
   const navigate = useNavigate()
 

@@ -5,7 +5,7 @@ import ExpenseDetailView from "../../components/ExpenseDetailView/ExpenseDetailV
 import ExpenseUpdateForm from '../../components/ExpenseUpdateForm/ExpenseUpdateForm'
 import * as expensesAPI from '../../utilities/expenses-api'
 
-export default function ExpenseDetailPage({getReportFromExpense, updateReport, }) {
+export default function ExpenseDetailPage({getReportFromExpense, updateReport, user }) {
   let { expenseId } = useParams()
   const report = getReportFromExpense(expenseId)
   const [displayUpdateForm, setDisplayUpdateForm] = useState(false)
@@ -37,15 +37,16 @@ export default function ExpenseDetailPage({getReportFromExpense, updateReport, }
           <ExpenseUpdateForm expense={expense} setDisplayUpdateForm={setDisplayUpdateForm} updateReport={updateReport}/>
           :
           <ExpenseDetailView expense={expense} />}
-        {report.isPending || displayUpdateForm  ? 
+        {user.isAdmin ?
           null 
           :
-          <button onClick={showUpdateForm}>Update Expense</button>
-        }
-        {report.isPending || displayUpdateForm ? 
-          null 
-          :
-          <button onClick={removeExpense}>Delete Expense</button>
+          report.isPending || displayUpdateForm  ? 
+            null 
+            :
+            <div>
+              <button onClick={showUpdateForm}>Update Expense</button>
+              <button onClick={removeExpense}>Delete Expense</button>
+            </div>
         }
       </main>
     </>

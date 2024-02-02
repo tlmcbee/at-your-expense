@@ -17,7 +17,6 @@ function App() {
       const allReports = await reportsAPI.getAllReports()
       setReports(allReports)
     }
-  
     getAllReports()
   }, [])
 
@@ -49,16 +48,14 @@ function App() {
       {user ? 
       <>
         <NavBar user={user} setUser={setUser} />
+          <aside>
+            <ReportList reports={reports} user={user} />
+          </aside>
 
-        {user._id === user || user.isAdmin ?
-        <aside>
-          <ReportList reports={reports} />
-        </aside> :
-        null}
         <Routes>
-          <Route path="/reports" element={<NewReportPage addReport={addReport} />} />
-          <Route path="/reports/:reportId" element={<ReportDetailPage getReport={getReport} deleteReport={deleteReport} updateReport={updateReport}/>} />
-          <Route path="/expenses/:expenseId" element={<ExpenseDetailPage  getReportFromExpense={getReportFromExpense} updateReport={updateReport} />} />
+          <Route path="/reports" element={<NewReportPage addReport={addReport} user={user}/>} />
+          <Route path="/reports/:reportId" element={<ReportDetailPage getReport={getReport} deleteReport={deleteReport} updateReport={updateReport} user={user}/>} />
+          <Route path="/expenses/:expenseId" element={<ExpenseDetailPage  getReportFromExpense={getReportFromExpense} updateReport={updateReport} user={user} />} />
         </Routes>
       </>
       :
