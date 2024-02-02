@@ -7,6 +7,7 @@ export default function ExpenseDetailView({expense}) {
     {expense.expenseType}
     {expense.description}
     {expense.amount}
+    <img src={expense.refFile} alt=''/>
     </>
 
   )

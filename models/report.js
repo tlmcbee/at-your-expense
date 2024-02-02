@@ -22,6 +22,9 @@ const expenseSchema = new Schema({
     type: Number, 
     required: true
   },
+  refFile: {
+    type: String
+  }
 })
 
 const reportSchema = new Schema({

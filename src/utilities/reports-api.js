@@ -10,7 +10,7 @@ export function createReport(formData) {
 }
 
 export function addToReport(reportId, formData) {
-  return sendRequest(`${BASE_URL}/${reportId}/expenses`, 'POST', formData)
+  return sendRequest(`${BASE_URL}/${reportId}/expenses`, 'POST', formData, true)
 }
 
 export function removeReport(reportId) {

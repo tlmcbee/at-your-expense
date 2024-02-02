@@ -1,3 +1,4 @@
+const uploadFile = require('../../config/upload-file')
 const Report = require('../../models/report')
 
 module.exports = {
@@ -28,11 +29,21 @@ async function newReport(req, res) {
 }
 
 async function addToReport(req, res) {
-  console.log(req.body)
-  console.log(req.params.id)
   const report = await Report.findById(req.params.id)
-  report.expenses.push(req.body)
   try {
+    if(req.file) {
+      const expenseRefFile = await uploadFile(req.file)
+      report.expenses.push({
+        title: req.body.title,
+        date: req.body.date,
+        expenseType: req.body.expenseType,
+        description: req.body.description,
+        amount: req.body.amount,
+        refFile: expenseRefFile
+      })
+    } else {
+      report.expenses.push(req.body)
+    }
     await report.save()
     res.json(report)
   } catch(err){
