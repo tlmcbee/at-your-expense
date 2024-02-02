@@ -40,10 +40,10 @@ async function addToReport(req, res) {
         description: req.body.description,
         amount: req.body.amount,
         refFile: expenseRefFile
-      })
-    } else {
-      report.expenses.push(req.body)
-    }
+    })
+  } else {
+    report.expenses.push(req.body)
+  }
     await report.save()
     res.json(report)
   } catch(err){

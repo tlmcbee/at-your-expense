@@ -1,3 +1,4 @@
+const uploadFile = require('../../config/upload-file')
 const Report = require('../../models/report')
 
 module.exports = {
@@ -29,14 +30,25 @@ async function update(req, res) {
   try {
     const report = await Report.findOne({'expenses._id': req.params.expenseId})
     const expenseSubDoc = report.expenses.id(req.params.expenseId)
-    expenseSubDoc.title = req.body.title
-    expenseSubDoc.date = req.body.date
-    expenseSubDoc.expenseType = req.body.expenseType
-    expenseSubDoc.description = req.body.description
-    expenseSubDoc.amount = req.body.amount
+    if(req.file) {
+      const expenseRefFile = await uploadFile(req.file)
+      expenseSubDoc.title = req.body.title
+      expenseSubDoc.date = req.body.date
+      expenseSubDoc.expenseType = req.body.expenseType
+      expenseSubDoc.description = req.body.description
+      expenseSubDoc.amount = req.body.amount
+      expenseSubDoc.refFile = expenseRefFile
+    } else {
+      expenseSubDoc.title = req.body.title
+      expenseSubDoc.date = req.body.date
+      expenseSubDoc.expenseType = req.body.expenseType
+      expenseSubDoc.description = req.body.description
+      expenseSubDoc.amount = req.body.amount
+    }
     await report.save()
     res.json(report)
   } catch(err) {
+    console.log(err)
     res.status(400).json(err)
   }
 }

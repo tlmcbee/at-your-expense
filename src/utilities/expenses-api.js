@@ -11,5 +11,5 @@ export function removeExpense(expenseId) {
 }
 
 export function editExpense(expenseId, formData) {
-  return sendRequest(`${BASE_URL}/${expenseId}`, 'PUT', formData)
+  return sendRequest(`${BASE_URL}/${expenseId}`, 'PUT', formData, true)
 }

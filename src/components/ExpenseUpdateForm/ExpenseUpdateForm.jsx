@@ -1,16 +1,19 @@
 import { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
 import * as expensesAPI from '../../utilities/expenses-api'
 
 export default function ExpenseUpdateForm ({expense, setDisplayUpdateForm, updateReport}) {
   const [formData, setFormData] = useState({
     title: `${expense.title}`,
-    date: `${expense.date}`,
+    date: `${expense.date}`.toISOString().split('T')[0],
     expenseType: `${expense.expenseType}`,
     description: `${expense.description}`,
-    amount: `${expense.amount}`
+    amount: `${expense.amount}`,
+    file: `${expense.refFile}`
   })
-  const navigate = useNavigate()
+
+  function handleFileChange(evt) {
+    setFormData({...formData, file: evt.target.files[0]})
+  }
 
   function handleChange(evt) {
     const newFormData = {
@@ -23,7 +26,16 @@ export default function ExpenseUpdateForm ({expense, setDisplayUpdateForm, updat
   async function handleSubmit(evt) {
     evt.preventDefault()
     const expenseId = expense._id
-    const updatedExpense = await expensesAPI.editExpense(expenseId, formData)
+
+    const payload = new FormData()
+    payload.append('title', formData.title)
+    payload.append('date', formData.date)
+    payload.append('expenseType', formData.expenseType)
+    payload.append('description', formData.description)
+    payload.append('amount', formData.amount)
+    payload.append('file', formData.file)
+
+    const updatedExpense = await expensesAPI.editExpense(expenseId, payload)
     updateReport(updatedExpense)
     setDisplayUpdateForm(false)
   }
@@ -31,7 +43,7 @@ export default function ExpenseUpdateForm ({expense, setDisplayUpdateForm, updat
   return  (
     <>
     <h1>NewExpenseForm</h1>
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit}  encType='multipart/form-data'>
       <label>Title:
       </label>
       <input 
@@ -72,6 +84,8 @@ export default function ExpenseUpdateForm ({expense, setDisplayUpdateForm, updat
         value={formData.amount}
         onChange={handleChange}
       />
+      <label>Upload File:</label>
+      <input type="file" onChange={handleFileChange} />
       <button type="submit">Edit Expense</button>
     </form>
   </>
