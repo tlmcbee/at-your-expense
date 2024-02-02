@@ -8,7 +8,7 @@ export default function NewReportForm({ addReport, user }) {
     expenses: [],
     isPending: false,
     isComplete: false,
-    user: ''
+    user: {}
   })
   const navigate = useNavigate()
 
