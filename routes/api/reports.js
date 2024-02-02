@@ -8,5 +8,7 @@ router.get('/:id', reportsCtrl.getReport)
 router.post('/new', reportsCtrl.new)
 router.post('/:id/expenses', upload.single('file'), reportsCtrl.addToReport)
 router.delete('/:id', reportsCtrl.delete)
+router.post('/:id/submit-report', reportsCtrl.submitReport)
+router.post('/:id/edit-report', reportsCtrl.editReport)
 
 module.exports = router

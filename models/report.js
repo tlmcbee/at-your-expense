@@ -31,7 +31,7 @@ const reportSchema = new Schema({
   title: {type: String, required: true},
   expenses: [expenseSchema],
   isPending: {type: Boolean, default: false},
-  isComplete: {type: Boolean, default: false},
+  isApproved: {type: Boolean, default: false},
 },{
   timestamps: true,
   toJSON: {virtuals: true}

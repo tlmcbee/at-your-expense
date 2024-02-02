@@ -16,3 +16,11 @@ export function addToReport(reportId, formData) {
 export function removeReport(reportId) {
   return sendRequest(`${BASE_URL}/${reportId}`, 'DELETE')
 }
+
+export function submitReport(reportId) {
+  return sendRequest(`${BASE_URL}/${reportId}/submit-report`, 'POST')
+}
+
+export function editReport(reportId) {
+  return sendRequest(`${BASE_URL}/${reportId}/edit-report`, 'POST')
+}

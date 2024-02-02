@@ -18,13 +18,30 @@ export default function ReportDetailPage({ getReport, deleteReport, updateReport
     navigate('/reports')
   }
 
+  async function handleSubmitReport() {
+    const updatedReport = await reportsAPI.submitReport(report._id)
+    updateReport(updatedReport)
+  }
+
+  async function handleEditReport() {
+    const updatedReport = await reportsAPI.editReport(report._id)
+    updateReport(updatedReport)
+  }
+
+  
+
   return (
     <>
     <main>
       <h1>{report.title}</h1>
       <button onClick={removeReport}>Delete Report</button>
       <ExpensesList expenses={report.expenses} />
-      <NewExpenseForm report={report} updateReport={updateReport} /> 
+      <label>Total:</label>
+      ${report.expenseTotal}
+      {report.isPending ? 
+      <button onClick={handleEditReport}>Edit Report</button> :
+      <button onClick={handleSubmitReport}>Submit Report</button>}
+       {report.isPending ? null : <NewExpenseForm report={report} updateReport={updateReport} /> }
     </main>
     </>
   )

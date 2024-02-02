@@ -6,7 +6,9 @@ module.exports = {
   getReport,
   new: newReport,
   addToReport,
-  delete: deleteReport
+  delete: deleteReport,
+  submitReport,
+  editReport
 }
 
 async function index(req, res) {
@@ -60,4 +62,28 @@ async function deleteReport(req, res) {
   console.log(err)
   res.status(400).json(err)
  }
+}
+
+async function submitReport(req, res) {
+  try{
+  const report = await Report.findById(req.params.id)
+  report.isPending = true
+  await report.save()
+  res.json(report)
+  } catch(err) {
+    console.log(err)
+    res.status(400).json(err)
+  }
+}
+
+async function editReport(req, res) {
+  try{
+  const report = await Report.findById(req.params.id)
+  report.isPending = false
+  await report.save()
+  res.json(report)
+  } catch(err) {
+    console.log(err)
+    res.status(400).json(err)
+  }
 }

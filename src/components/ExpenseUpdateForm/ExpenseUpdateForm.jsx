@@ -4,7 +4,7 @@ import * as expensesAPI from '../../utilities/expenses-api'
 export default function ExpenseUpdateForm ({expense, setDisplayUpdateForm, updateReport}) {
   const [formData, setFormData] = useState({
     title: `${expense.title}`,
-    date: `${expense.date}`.toISOString().split('T')[0],
+    date: `${expense.date}`,
     expenseType: `${expense.expenseType}`,
     description: `${expense.description}`,
     amount: `${expense.amount}`,

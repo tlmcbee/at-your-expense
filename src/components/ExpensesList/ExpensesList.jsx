@@ -5,5 +5,7 @@ export default function ExpensesList ({ expenses }) {
     (exp, idx) => (<ExpenseLineItem key={idx} expense={exp} />)
   )
   
-return <ul>{allExpenses}</ul>
+return (
+<ul>{allExpenses}</ul>
+)
 }

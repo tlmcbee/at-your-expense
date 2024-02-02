@@ -32,17 +32,17 @@ export default function ExpenseDetailPage({getReportFromExpense, updateReport, }
       <main>
         <h1>{report.title}</h1>
         <ExpensesList expenses={report.expenses}/>
-        <button onClick={showExpenseForm}>Add Expense</button>
+        {report.isPending ? null : <button onClick={showExpenseForm}>Back to Report</button>}
         {displayUpdateForm ? 
           <ExpenseUpdateForm expense={expense} setDisplayUpdateForm={setDisplayUpdateForm} updateReport={updateReport}/>
           :
           <ExpenseDetailView expense={expense} />}
-        {displayUpdateForm ? 
+        {report.isPending || displayUpdateForm  ? 
           null 
           :
           <button onClick={showUpdateForm}>Update Expense</button>
         }
-        {displayUpdateForm ? 
+        {report.isPending || displayUpdateForm ? 
           null 
           :
           <button onClick={removeExpense}>Delete Expense</button>

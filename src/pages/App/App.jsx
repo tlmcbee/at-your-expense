@@ -49,9 +49,12 @@ function App() {
       {user ? 
       <>
         <NavBar user={user} setUser={setUser} />
+
+        {user._id === user || user.isAdmin ?
         <aside>
           <ReportList reports={reports} />
-        </aside>
+        </aside> :
+        null}
         <Routes>
           <Route path="/reports" element={<NewReportPage addReport={addReport} />} />
           <Route path="/reports/:reportId" element={<ReportDetailPage getReport={getReport} deleteReport={deleteReport} updateReport={updateReport}/>} />
