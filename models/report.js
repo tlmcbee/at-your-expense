@@ -25,11 +25,7 @@ const expenseSchema = new Schema({
   refFile: {
     type: String
   },
-  user: {
-    type: Schema.Types.ObjectId,
-    ref: 'User',
-    required: true
-  }
+
 })
 
 const reportSchema = new Schema({
@@ -37,6 +33,11 @@ const reportSchema = new Schema({
   expenses: [expenseSchema],
   isPending: {type: Boolean, default: false},
   isApproved: {type: Boolean, default: false},
+  user: {
+    type: Schema.Types.ObjectId,
+    ref: 'User',
+    required: true
+  }
 },{
   timestamps: true,
   toJSON: {virtuals: true}
