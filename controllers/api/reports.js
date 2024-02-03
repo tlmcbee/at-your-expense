@@ -14,7 +14,7 @@ module.exports = {
 }
 
 async function index(req, res) {
-  const reports = await Report.find({})
+  const reports = await Report.find({user: req.user._id})
   res.json(reports)
 }
 

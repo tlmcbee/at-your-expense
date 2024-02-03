@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const upload = require('multer')()
+const ensureAdmin = require('../../config/ensureAdmin')
 const reportsCtrl = require('../../controllers/api/reports')
 
 router.get('/', reportsCtrl.index)

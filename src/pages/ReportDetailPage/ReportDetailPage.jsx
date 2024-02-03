@@ -8,7 +8,6 @@ export default function ReportDetailPage({ getReport, deleteReport, updateReport
   let report = getReport(reportId)
   const navigate = useNavigate()
   if(!report) return null
-  console.log(report)
   async function removeReport() {
     await reportsAPI.removeReport(report._id)
     deleteReport(report._id)
@@ -39,7 +38,11 @@ export default function ReportDetailPage({ getReport, deleteReport, updateReport
     <>
     <main>
       <h1>{report.title}</h1>
-      <button onClick={removeReport}>Delete Report</button>
+      {report.isApproved ?
+        null 
+        :
+        <button onClick={removeReport}>Delete Report</button>
+      }
       <ExpensesList expenses={report.expenses} />
       <label>Total:</label>
       ${report.expenseTotal}
