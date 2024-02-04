@@ -47,6 +47,10 @@ code {
   font-size: smaller;
 }
 
+.flex-spc-btw {
+  justify-content: space-between;
+}
+
 .flex-ctr-ctr {
   display: flex;
   justify-content: center;
@@ -150,4 +154,13 @@ button:disabled, form:invalid button[type="submit"] {
 button[type="submit"] {
   grid-column: span 2;
   margin: 1vmin 0 0;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
+
+a:hover {
+  text-decoration: underline;
 }

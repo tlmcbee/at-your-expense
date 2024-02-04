@@ -4,6 +4,7 @@ import ExpensesList from "../../components/ExpensesList/ExpensesList"
 import ExpenseDetailView from "../../components/ExpenseDetailView/ExpenseDetailView"
 import ExpenseUpdateForm from '../../components/ExpenseUpdateForm/ExpenseUpdateForm'
 import * as expensesAPI from '../../utilities/expenses-api'
+import './ExpenseDetailPage.css'
 
 export default function ExpenseDetailPage({getReportFromExpense, updateReport, user }) {
   let { expenseId } = useParams()
@@ -29,10 +30,13 @@ export default function ExpenseDetailPage({getReportFromExpense, updateReport, u
 
   return (
     <>
-      <main>
+      <main className='ExpenseDetailPage'>
+        <div>
         <h1>{report.title}</h1>
         <ExpensesList expenses={report.expenses}/>
         {report.isPending ? null : <button onClick={showExpenseForm}>Back to Report</button>}
+        </div>
+        <div className='span-right'>
         {displayUpdateForm ? 
           <ExpenseUpdateForm expense={expense} setDisplayUpdateForm={setDisplayUpdateForm} updateReport={updateReport}/>
           :
@@ -47,7 +51,9 @@ export default function ExpenseDetailPage({getReportFromExpense, updateReport, u
               <button onClick={showUpdateForm}>Update Expense</button>
               <button onClick={removeExpense}>Delete Expense</button>
             </div>
+            
         }
+        </div>
       </main>
     </>
   )

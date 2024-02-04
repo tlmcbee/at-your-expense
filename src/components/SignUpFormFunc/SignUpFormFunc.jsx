@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { signUp } from '../../utilities/users-services'
 
-export default function SignUpFormFunc({ setUser, updateReport }) {
+export default function SignUpFormFunc({ setUser, switchForm }) {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -27,7 +27,6 @@ export default function SignUpFormFunc({ setUser, updateReport }) {
       delete userData.confirm
       const user = await signUp(userData)
       setUser(user)
-      updateReport()
     } catch {
      setFormData({error: 'Sign Up Failed - Try Again'})
     }
@@ -48,6 +47,7 @@ export default function SignUpFormFunc({ setUser, updateReport }) {
         <button type="submit" disabled={disable}>SIGN UP</button>
       </form>
     </div>
+    <div>Already have an account? <button onClick={switchForm}>Log In</button></div>
     <p className="error-message">&nbsp;{formData.error}</p>
   </div>
   )

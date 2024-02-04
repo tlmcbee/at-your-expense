@@ -1,15 +1,15 @@
 import { Link } from "react-router-dom";
 import * as userService from "../../utilities/users-services"
-import * as adminAPI from '../../utilities/admin-api'
+import './NavBar.css'
 
-export default function NavBar({ user, setUser, setReports }) {
+export default function NavBar({ user, setUser}) {
   function handleLogOut() {
     userService.logOut()
     setUser(null)
   }
 
   return (
-    <nav>
+    <nav className="NavBar flex-j-end">
       Welcome {user.name.toUpperCase()}!
       &nbsp; | &nbsp;
       {user.isAdmin ? 

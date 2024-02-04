@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import * as reportsAPI from '../../utilities/reports-api'
+import './NewExpenseForm.css'
 
 export default function NewExpenseForm({ report, updateReport }){
   const [formData, setFormData] = useState({
@@ -49,8 +50,7 @@ export default function NewExpenseForm({ report, updateReport }){
 
   return(
     <>
-      <h1>NewExpenseForm</h1>
-      <form onSubmit={handleSubmit} encType='multipart/form-data'>
+      <form onSubmit={handleSubmit} encType='multipart/form-data' className='NewExpenseForm form-container'>
         <label>Title:
         </label>
         <input 
@@ -68,7 +68,7 @@ export default function NewExpenseForm({ report, updateReport }){
         />
         <label>Type: </label>
         <select name="expenseType" value={formData.expenseType} onChange={handleChange}>
-          <option value="transportation">Transportation</option>
+          <option value="transportation" >Transportation</option>
           <option value="fuel">Fuel</option>
           <option value="lodging">Lodging</option>
           <option value="food">Food</option>

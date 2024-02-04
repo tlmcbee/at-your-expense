@@ -1,0 +1,13 @@
+.ReportDetailPage {
+  background-color: grey;
+  grid-column: span 2;
+  display: grid;
+  border-radius: 5px;;
+}
+
+.span-right {
+  grid-column-start: 2;
+  grid-column-end: span 2;
+  grid-row-start: 1;
+  grid-row-end: span 2
+}

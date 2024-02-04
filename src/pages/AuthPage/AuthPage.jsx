@@ -1,14 +1,22 @@
-import SignUpForm from "../../components/SignUpForm/SignUpForm"
+import { useState } from 'react'
 import LoginForm from "../../components/LoginForm/LoginForm"
 import SignUpFormFunc from "../../components/SignUpFormFunc/SignUpFormFunc"
+import './AuthPage.css'
 
-export default function AuthPage({ setUser, updateReport }) {
+export default function AuthPage({ setUser }) {
+  const [showSignUp, setShowSignUp] = useState(false)
+
+  function switchForm() {
+    setShowSignUp(!showSignUp)
+  }
+
   return (
-    <main>
-      <h1>Auth Page</h1>
-      {/* <SignUpForm setUser={setUser}/> */}
-      <SignUpFormFunc setUser={ setUser } updateReport={updateReport}/>
-      <LoginForm setUser={setUser} updateReport={updateReport} />
+    <main className='AuthPage'>
+      {showSignUp ?
+        <SignUpFormFunc setUser={setUser} switchForm={switchForm}/>
+        :
+        <LoginForm setUser={setUser} switchForm={switchForm} />
+      }
   </main>
   )
 }

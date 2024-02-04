@@ -1,8 +1,7 @@
 import { useState, useEffect } from "react";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 import { getUser } from '../../utilities/users-services';
 import * as reportsAPI from '../../utilities/reports-api'
-import * as adminAPI from '../../utilities/admin-api'
 import NewReportPage from "../NewReportPage/NewReportPage";
 import AuthPage from "../AuthPage/AuthPage";
 import ReportDetailPage from '../ReportDetailPage/ReportDetailPage'
@@ -10,6 +9,7 @@ import NavBar from "../../components/NavBar/NavBar";
 import ExpenseDetailPage from "../ExpenseDetailPage/ExpenseDetailPage";
 import ReportList from "../../components/ReportList/ReportList";
 import AdminViewPage from '../../pages/AdminViewPage/AdminViewPage'
+import './App.css'
 
 
 function App() {
@@ -20,9 +20,13 @@ function App() {
       const allUserReports = await reportsAPI.getAllReports()
       setReports(allUserReports)
     }
+    if(user){
     getAllUserReports()
+    } else {
+      setReports([])
+    }
 
-  }, [])
+  }, [user])
 
   function getReportFromExpense(expenseId) {
     return reports.find(report => report.expenses.some(expense => expense._id === expenseId))
@@ -57,7 +61,8 @@ function App() {
           </aside>
 
         <Routes>
-          <Route path="/admin" element={<AdminViewPage reports={reports} setReports={setReports} updateReport={updateReport} getAllReports={adminAPI.getAllReports} />} />
+          <Route path="/*" element={<Navigate to="/reports" />} />
+          <Route path="/admin" element={<AdminViewPage reports={reports} setReports={setReports}  />} />
           <Route path="/reports" element={<NewReportPage addReport={addReport} user={user}/>} />
           <Route path="/reports/:reportId" element={<ReportDetailPage getReport={getReport} deleteReport={deleteReport} updateReport={updateReport} user={user}/>} />
           <Route path="/expenses/:expenseId" element={<ExpenseDetailPage  getReportFromExpense={getReportFromExpense} updateReport={updateReport} user={user} />} />

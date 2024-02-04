@@ -2,6 +2,7 @@ import { useParams, useNavigate } from 'react-router-dom'
 import * as reportsAPI from '../../utilities/reports-api'
 import NewExpenseForm from '../../components/NewExpenseForm/NewExpenseForm'
 import ExpensesList from '../../components/ExpensesList/ExpensesList'
+import './ReportDetailPage.css'
 
 export default function ReportDetailPage({ getReport, deleteReport, updateReport, user }) {
   let { reportId } = useParams()
@@ -36,8 +37,10 @@ export default function ReportDetailPage({ getReport, deleteReport, updateReport
 
   return (
     <>
-    <main>
+    <main className='ReportDetailPage'>
+      <div>
       <h1>{report.title}</h1>
+      <h4>Created on: {new Date(report.createdAt).toLocaleDateString()}</h4>
       {report.isApproved ?
         null 
         :
@@ -46,6 +49,16 @@ export default function ReportDetailPage({ getReport, deleteReport, updateReport
       <ExpensesList expenses={report.expenses} />
       <label>Total:</label>
       ${report.expenseTotal}
+      </div>
+      <div>            
+        {report.isPending ? 
+              <button onClick={handleEditReport}>Edit Report</button> 
+              :
+              report.isApproved ? 
+              null
+              :
+              <button onClick={handleSubmitReport}>Submit Report</button>
+              }</div>
       {report.isApproved ? 
         null
         :
@@ -55,12 +68,8 @@ export default function ReportDetailPage({ getReport, deleteReport, updateReport
             <button onClick={denyReport}>Deny Report</button>
           </div>
           :
-          <div>
-            {report.isPending ? 
-              <button onClick={handleEditReport}>Edit Report</button> 
-              :
-              <button onClick={handleSubmitReport}>Submit Report</button>
-              }
+          <div className='span-right'>
+
             {report.isPending ? 
               null 
               : 

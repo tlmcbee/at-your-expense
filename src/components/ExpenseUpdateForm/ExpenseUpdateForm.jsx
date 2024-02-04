@@ -42,8 +42,7 @@ export default function ExpenseUpdateForm ({expense, setDisplayUpdateForm, updat
 
   return  (
     <>
-    <h1>NewExpenseForm</h1>
-    <form onSubmit={handleSubmit}  encType='multipart/form-data'>
+    <form onSubmit={handleSubmit}  encType='multipart/form-data' className='form-container'>
       <label>Title:
       </label>
       <input 

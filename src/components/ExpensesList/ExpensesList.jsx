@@ -1,4 +1,5 @@
 import ExpenseLineItem from "../ExpenseLineItem/ExpenseLineItem"
+import './ExpensesList.css'
 
 export default function ExpensesList ({ expenses }) {
   const allExpenses = expenses.map(
@@ -6,6 +7,6 @@ export default function ExpensesList ({ expenses }) {
   )
   
 return (
-<ul>{allExpenses}</ul>
+<ul className="ExpenesesList">{allExpenses}</ul>
 )
 }

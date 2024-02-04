@@ -1,12 +1,16 @@
 import { Link } from 'react-router-dom'
+import './ExpenseLineItem.css'
 
 export default function ExpenseLineItem({ report, expense }) {
   return (
     <Link to={`/expenses/${expense._id}`}>
-      <li>
+      <li className='ExpenseLineItem flex-spc-btw'>
+        <div>
         {expense.title}
-        {expense.date}
+        </div>
+        <div>
         {expense.amount}
+        </div>
       </li>
     </Link>
   )
