@@ -1,4 +1,3 @@
-<p align="center">
   
 # At Your Expense
 
@@ -31,9 +30,11 @@ An admin user will be able to view any pending reports and either Approve or Den
 
 [ERD](https://lucid.app/lucidchart/fcfb9756-17bf-4e0c-87e2-c2adc81fe136/edit?invitationId=inv_b8d6ad36-83d6-4b0a-9ccc-b29bbe9c5f38&page=0_0#)
 
+Click here for the deployed application
+[At Your Expense](https://at-your-expnese-eb5fd11f15a8.herokuapp.com/)
+
 ### Future Development
 As I continue to update this application I plan on implementing features such as:
 - A message box, in case an admin denies a report, they can leave note for the user as to why their report has been denied.
 - Implenting a modal when an image is clicked so that it can be viewed a larger size and clearly read
-</p>
 
