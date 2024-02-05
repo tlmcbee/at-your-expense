@@ -1,4 +1,4 @@
-
+<p align="center">
 # At Your Expense
 
 <img width="350" alt="AYE Logo" src="https://github.com/tlmcbee/at-your-expense/assets/148281608/aed074f8-0f6f-4e7f-ae14-3bfd323f499a">
@@ -34,10 +34,5 @@ An admin user will be able to view any pending reports and either Approve or Den
 As I continue to update this application I plan on implementing features such as:
 - A message box, in case an admin denies a report, they can leave note for the user as to why their report has been denied.
 - Implenting a modal when an image is clicked so that it can be viewed a larger size and clearly read
+</p>
 
-
-Splash
-
-Report
-
-Admin Splash
