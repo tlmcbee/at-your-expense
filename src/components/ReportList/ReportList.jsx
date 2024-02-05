@@ -5,7 +5,11 @@ export default function ReportList({ reports, user }) {
 
   return (
     <div className="flex-col flex-ctr-ctr" style={{gap: "5px"}}> 
+    {user.isAdmin ? 
+      <p>Pending Reports</p>
+      :
       <p>Report List</p>
+    }
       <ul style={{paddingLeft: '0'}}>
         {allReports}
       </ul>

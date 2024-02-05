@@ -12,8 +12,8 @@ const expenseSchema = new Schema({
   },
   expenseType: {
     type: String,
+    default: 'transportation',
     enum: ['transportation', 'fuel', 'dining', 'lodging', 'office-supplies', 'misc'],
-    default: 'fuel',
   },
  description: {
   type: String
