@@ -42,9 +42,12 @@ export default function ExpenseUpdateForm ({expense, setDisplayUpdateForm, updat
 
   return  (
     <>
-    <form onSubmit={handleSubmit}  encType='multipart/form-data' className='form-container'>
-      <label>Title:
-      </label>
+    <form 
+      onSubmit={handleSubmit}  
+      encType='multipart/form-data' 
+      className='form-container'
+    >
+      <label>Title:</label>
       <input 
         name="title" 
         placeholder="Title" 
@@ -62,9 +65,10 @@ export default function ExpenseUpdateForm ({expense, setDisplayUpdateForm, updat
       <select name="expenseType" value={formData.expenseType} onChange={handleChange}>
         <option value="transportation">Transportation</option>
         <option value="fuel">Fuel</option>
+        <option value="dining">Dining</option>
         <option value="lodging">Lodging</option>
         <option value="food">Food</option>
-        <option value="office-supplies">Office-Supplies</option>
+        <option value="office-supplies">Office Supplies</option>
         <option value="misc">Miscellaneous</option>
       </select>
       <label name="description">Description: </label>

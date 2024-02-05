@@ -1,17 +1,15 @@
 .App {
   text-align: center;
   display: grid;
-  grid-template-columns: 1fr 2fr 2fr;
+  grid-template-columns: 150px 2fr 2fr;
   grid-template-rows: 50px 4fr;
+  margin: 0 auto;
+  
 }
 
 .App-logo {
   height: 40vmin;
   pointer-events: none;
-}
-.App aside {
-  display: flex;
-  flex-direction: column;
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -34,7 +32,6 @@
 .App-link {
   color: #61dafb;
 }
-
 
 @keyframes App-logo-spin {
   from {

@@ -1,8 +1,9 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import * as reportsAPI from '../../utilities/reports-api'
+import './NewReportForm.css'
 
-export default function NewReportForm({ addReport, user }) {
+export default function NewReportForm({ addReport, setShowForm }) {
   const [formData, setFormData] = useState({
     title: '',
     expenses: [],
@@ -25,12 +26,13 @@ export default function NewReportForm({ addReport, user }) {
     evt.preventDefault()
     const newReport = await reportsAPI.createReport(formData)
     addReport(newReport)
+    setShowForm(false)
     navigate(`/reports/${newReport._id}`)
   }
 
   return (
     <>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className='NewReportForm'>
         Report Title:
         <input type="text" name="title" placeholder="Enter Title Name" onChange={handleChange} />
         <button type="submit">Submit</button>

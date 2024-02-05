@@ -6,7 +6,7 @@ export default function NewExpenseForm({ report, updateReport }){
   const [formData, setFormData] = useState({
     title: '',
     date: new Date().toISOString().split('T')[0],
-    expenseType: '',
+    expenseType: 'transportation',
     description: '',
     amount: '',
     file: null
@@ -48,11 +48,15 @@ export default function NewExpenseForm({ report, updateReport }){
     updateReport(updatedReport)
   }
 
+
   return(
     <>
-      <form onSubmit={handleSubmit} encType='multipart/form-data' className='NewExpenseForm form-container'>
-        <label>Title:
-        </label>
+      <form
+        onSubmit={handleSubmit} 
+        encType='multipart/form-data' 
+        className='NewExpenseForm form-container light-text'
+       >
+        <label>Title:</label>
         <input 
           name="title" 
           placeholder="Title" 
@@ -70,9 +74,10 @@ export default function NewExpenseForm({ report, updateReport }){
         <select name="expenseType" value={formData.expenseType} onChange={handleChange}>
           <option value="transportation" >Transportation</option>
           <option value="fuel">Fuel</option>
+          <option value="dining">Dining</option>
           <option value="lodging">Lodging</option>
           <option value="food">Food</option>
-          <option value="office-supplies">Office-Supplies</option>
+          <option value="office-supplies">Office Supplies</option>
           <option value="misc">Miscellaneous</option>
         </select>
         <label name="description">Description: </label>
@@ -82,8 +87,7 @@ export default function NewExpenseForm({ report, updateReport }){
           rows="10" 
           placeholder="Enter Description" 
           value={formData.description}
-          onChange={handleChange}>
-        </textarea>
+          onChange={handleChange} />
         <label>Amount:</label>
         <input 
           type="number" 
@@ -93,7 +97,7 @@ export default function NewExpenseForm({ report, updateReport }){
         />
         <label>Upload File:</label>
         <input type="file" onChange={handleFileChange} />
-        <button type="submit">Add Expense</button>
+        <button type="submit" style={{color: 'black'}}>Add Expense</button>
       </form>
     </>
   ) 

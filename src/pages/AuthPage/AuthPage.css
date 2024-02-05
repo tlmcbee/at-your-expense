@@ -6,3 +6,11 @@ grid-row-end: 3;
 place-self: center;
 grid-column: span 3;
 }
+
+img {
+  height: 200px;
+  width: 200px;
+  box-shadow: 12px 6px 16px -1px rgba(0,0,0,0.75);
+  -webkit-box-shadow: 12px 6px 16px -1px rgba(0,0,0,0.75);
+  -moz-box-shadow: 12px 6px 16px -1px rgba(0,0,0,0.75);
+}

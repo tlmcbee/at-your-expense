@@ -96,6 +96,7 @@ async function approved(req, res) {
   try {
     const report = await Report.findById(req.params.id)
     report.isApproved = true
+    report.isPending = false
     await report.save()
     res.json(report)
   } catch(err) {

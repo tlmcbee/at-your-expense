@@ -1,0 +1,23 @@
+.placement{
+grid-column-start: 2;
+grid-column-end: span 2;
+place-self: center
+}
+
+.splash-msg {
+  background-color: var(--secondary);
+  width: 450px;
+  color: black;
+  font-weight: 500;
+  border: 2px solid var(--primary);
+  border-radius: 25px;
+  box-shadow: 12px 6px 16px -1px rgba(0,0,0,0.75);
+  -webkit-box-shadow: 12px 6px 16px -1px rgba(0,0,0,0.75);
+  padding: 40px;
+
+}
+
+span {
+  color: var(--primary);
+  font-weight: 500;
+}

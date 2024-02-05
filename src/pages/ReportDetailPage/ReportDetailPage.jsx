@@ -38,32 +38,51 @@ export default function ReportDetailPage({ getReport, deleteReport, updateReport
   return (
     <>
     <main className='ReportDetailPage'>
-      <div>
-      <h1>{report.title}</h1>
+      <div className={report.isPending || report.isApproved ? 'place-ctr':null} > 
+    <h1>{report.title}</h1>
       <h4>Created on: {new Date(report.createdAt).toLocaleDateString()}</h4>
-      {report.isApproved ?
-        null 
+      <h6>Status: 
+      {report.isPending ?
+        <span style={{color: 'yellow'}}>Pending</span>
         :
-        <button onClick={removeReport}>Delete Report</button>
+        report.isApproved ?
+        <span style={{color: 'green'}}>Approved</span>
+        :
+        <span>Waiting to Submit</span>
+      }
+      </h6>
+      {user.isAdmin ?
+      null
+      :
+        report.isApproved ?
+          null 
+          :
+          <button onClick={removeReport}>Delete Report</button>
       }
       <ExpensesList expenses={report.expenses} />
+      <div style={{display: 'flex'}} className='flex-spc-btw'>
       <label>Total:</label>
-      ${report.expenseTotal}
+      ${report.expenseTotal.toFixed(2)}
       </div>
-      <div>            
-        {report.isPending ? 
-              <button onClick={handleEditReport}>Edit Report</button> 
-              :
-              report.isApproved ? 
-              null
-              :
-              <button onClick={handleSubmitReport}>Submit Report</button>
-              }</div>
+      </div>
+      <div className='place-ctr'>            
+        {user.isAdmin ? 
+        null 
+        :
+        report.isPending ? 
+          <button onClick={handleEditReport}>Edit Report</button> 
+          :
+          !report.isPending && report.isApproved ? 
+            null
+            :
+            <button onClick={handleSubmitReport}>Submit Report</button>
+          }
+        </div>
       {report.isApproved ? 
         null
         :
         user.isAdmin ? 
-          <div>
+          <div className='place-ctr'>
             <button onClick={approveReport}>Approve Report</button>
             <button onClick={denyReport}>Deny Report</button>
           </div>

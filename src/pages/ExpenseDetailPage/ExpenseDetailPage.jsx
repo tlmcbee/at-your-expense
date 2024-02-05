@@ -32,27 +32,26 @@ export default function ExpenseDetailPage({getReportFromExpense, updateReport, u
     <>
       <main className='ExpenseDetailPage'>
         <div>
-        <h1>{report.title}</h1>
+        <h2>{report.title}</h2>
         <ExpensesList expenses={report.expenses}/>
-        {report.isPending ? null : <button onClick={showExpenseForm}>Back to Report</button>}
+        <button onClick={showExpenseForm}>Back to Report</button>
         </div>
         <div className='span-right'>
-        {displayUpdateForm ? 
-          <ExpenseUpdateForm expense={expense} setDisplayUpdateForm={setDisplayUpdateForm} updateReport={updateReport}/>
-          :
-          <ExpenseDetailView expense={expense} />}
-        {user.isAdmin ?
-          null 
-          :
-          report.isPending || displayUpdateForm  ? 
+          {displayUpdateForm ? 
+            <ExpenseUpdateForm expense={expense} setDisplayUpdateForm={setDisplayUpdateForm} updateReport={updateReport}/>
+            :
+            <ExpenseDetailView expense={expense} />}
+          {user.isAdmin ?
             null 
             :
-            <div>
-              <button onClick={showUpdateForm}>Update Expense</button>
-              <button onClick={removeExpense}>Delete Expense</button>
-            </div>
-            
-        }
+            report.isPending || displayUpdateForm  ? 
+              null 
+              :
+              <div>
+                <button onClick={showUpdateForm}>Update Expense</button>
+                <button onClick={removeExpense}>Delete Expense</button>
+              </div>
+          }
         </div>
       </main>
     </>

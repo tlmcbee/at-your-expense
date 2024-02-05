@@ -1,13 +1,27 @@
 .ReportDetailPage {
-  background-color: grey;
+  background-color: var(--secondary);
   grid-column: span 2;
   display: grid;
   border-radius: 5px;;
+  border: 2px solid var(--primary);
+  padding-left: 10px;
+  padding-bottom: 10px;
+  box-shadow: 12px 6px 16px -1px rgba(0,0,0,0.75);
+-webkit-box-shadow: 12px 6px 16px -1px rgba(0,0,0,0.75);
+-moz-box-shadow: 12px 6px 16px -1px rgba(0,0,0,0.75);
 }
 
 .span-right {
   grid-column-start: 2;
   grid-column-end: span 2;
   grid-row-start: 1;
-  grid-row-end: span 2
+  grid-row-end: span 3;
+  margin-left: 10px;
 }
+
+.place-ctr {
+  grid-column-start: 1;
+  grid-column-end: span 3;
+  place-self: center;
+}
+

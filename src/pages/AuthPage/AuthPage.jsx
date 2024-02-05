@@ -12,6 +12,7 @@ export default function AuthPage({ setUser }) {
 
   return (
     <main className='AuthPage'>
+      <img src="AYE-Logo.png" alt="" />
       {showSignUp ?
         <SignUpFormFunc setUser={setUser} switchForm={switchForm}/>
         :

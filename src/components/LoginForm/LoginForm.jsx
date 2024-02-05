@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import * as usersService from '../../utilities/users-services';
-import * as reportsAPI from '../../utilities/reports-api'
 
 export default function LoginForm({ setUser, switchForm }) {
   const [credentials, setCredentials] = useState({
@@ -25,7 +24,6 @@ export default function LoginForm({ setUser, switchForm }) {
       // will resolve to the user object included in the
       // payload of the JSON Web Token (JWT)
       const user = await usersService.login(credentials);
-      const reports = await reportsAPI.getAllReports()
       setUser(user);
     } catch {
       setError('Log In Failed - Try Again');
@@ -45,7 +43,10 @@ export default function LoginForm({ setUser, switchForm }) {
           <button type="submit">LOG IN</button>
         </form>
       </div>
-      <div>Don't Have an account? <button onClick={switchForm}>Sign Up Here</button></div>
+      <div>
+        Don't Have an account? 
+        <button onClick={switchForm}>Sign Up Here</button>
+      </div>
       <p className="error-message">&nbsp;{error}</p>
     </div>
   );
