@@ -1,17 +1,17 @@
 
 # At Your Expense
 
-Logo
+<img width="350" alt="AYE Logo" src="https://github.com/tlmcbee/at-your-expense/assets/148281608/aed074f8-0f6f-4e7f-ae14-3bfd323f499a">
 
 At Your Expense is a MERN stack application that is geared towards people that are looking for a expense report reimbursement tracker. Users have the ability to sign up/login via a JSON Web Token. Once logged in a user can create expense reports. They will see an option to add expenses to report along with an upload button so they can attach receipts from their spendings. 
 
-Splash
+<img width="572" alt="AYE Splash SS" src="https://github.com/tlmcbee/at-your-expense/assets/148281608/29a9bc0b-49a8-4566-9c01-c7e16444cb43">
 
-Report
+<img width="567" alt="AYE Report SS" src="https://github.com/tlmcbee/at-your-expense/assets/148281608/1dba5934-7ada-4092-be4a-f8a29f4d1516">
 
 An admin user will be able to view any pending reports and either Approve or Deny. If a report is approved it will be removed from the admin's view and will no longer be editable. If its denied it is sent back to the person who created the report to make necessary adjustments.
 
-Admin Splash
+<img width="555" alt="AYE Admin SS" src="https://github.com/tlmcbee/at-your-expense/assets/148281608/e1ef5148-d393-4c6e-9370-e773cd4ae3ed">
 
 ## Technologies Used
 
