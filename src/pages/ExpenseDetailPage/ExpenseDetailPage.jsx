@@ -47,6 +47,9 @@ export default function ExpenseDetailPage({getReportFromExpense, updateReport, u
             report.isPending || displayUpdateForm  ? 
               null 
               :
+              report.isApproved ?
+              null
+              :
               <div>
                 <button onClick={showUpdateForm}>Update Expense</button>
                 <button onClick={removeExpense}>Delete Expense</button>
